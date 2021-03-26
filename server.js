@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 // Routing
-app.get("/", (request, response) => {
+app.get("/index", (request, response) => {
     db.collection("rappers").find().toArray()
     .then(data => {
         response.render("index.ejs", {info:data})
@@ -37,7 +37,7 @@ app.post("/addRapper" , (request, response) => {
     db.collection("rappers").insertOne(request.body)
     .then(result => {
         console.log("rapper added", request.body)
-        response.redirect("/")
+        response.redirect("/index")
     })
     .catch(error => console.log(error))
 })
