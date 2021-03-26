@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 // Routing
-app.get("/index", (request, response) => {
+app.get("/", (request, response) => {
     db.collection("rappers").find().toArray()
     .then(data => {
         response.render("index.ejs", {info:data})
@@ -37,7 +37,7 @@ app.post("/addRapper" , (request, response) => {
     db.collection("rappers").insertOne(request.body)
     .then(result => {
         console.log("rapper added", request.body)
-        response.redirect("/index")
+        response.redirect("/")
     })
     .catch(error => console.log(error))
 })
@@ -52,5 +52,5 @@ app.delete("/deleteRapper", (request, response) => {
 })
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server running on port ${PORT}/index`)
+    console.log(`Server running on port ${PORT}/`)
 })
