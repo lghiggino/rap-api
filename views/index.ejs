@@ -21,6 +21,7 @@
                             <li class="rapper">
                                 <span><%= info[i].stageName %></span>
                                 <span><%= info[i].birthName %></span>
+                                <span class='edit'>edit</span>
                                 <span class='delete'>delete</span>
                             </li>
                         <% } %>
@@ -29,13 +30,28 @@
             </div>
         </div>
     </section>
-
     
     <section class="section">
         <div class="container">
             <p class="mt-4"> To add a new rapper go to the:<a href="/formPage"> form page</a></p>
         </div>
     </section>
+
+    <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <ul id="rapperId">
+                
+            </ul>
+            <div class="field">
+                <form action="/editRapper" method="PUT">
+                    <input class="input" type="text" placeholder="New Birth Name" name="birthName">
+                    <input class="input" type="text" placeholder="New Stage Name" name="stageName">
+                    <input class="input" type="submit" value="edit">
+                </form>
+            </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
    
     <!-- <h2>Add A Rapper:</h2>
         <form action="/addRapper" method="POST">
