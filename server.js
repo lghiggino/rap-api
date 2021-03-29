@@ -5,7 +5,7 @@ const PORT = 2121
 
 // MongoDB Setup
 let db,
-    dbConnectionStr = "mongodb+srv://lng:123456abcd@cluster0.lh9oh.mongodb.net/Rappers?retryWrites=true&w=majority",
+    
     dbName = "rap"
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology : true})
