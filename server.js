@@ -45,10 +45,20 @@ app.post("/addRapper" , (request, response) => {
 app.delete("/deleteRapper", (request, response) => {
     db.collection("rappers").deleteOne({stageName : request.body.stageNameS})
     .then(result => {
-        console.log("from server line 44:rapper deleted", request.body.stageNameS)
+        console.log("from server line 48:rapper deleted", request.body.stageNameS)
         response.json("rapper deleted")
     })
     .catch(error => console.error(error))
+})
+
+app.put("/editRapper", (request, response) => {
+    db.collection("rappers").updateOne({stageName : request.body.stageNameS})
+    .then(result => {
+        console.log("from server line 57: rapped updated", request.body.stageNameS)
+        response.json("rapper updated")
+        response.redirect("/")
+    })
+    .catch(error =>  console.log(error))
 })
 
 app.listen(process.env.PORT || PORT, () => {

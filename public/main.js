@@ -47,11 +47,9 @@ function showModal(){
         <li class="has-text-white">${this.parentNode.childNodes[1].innerText}</li>
         <li class="has-text-white">${this.parentNode.childNodes[3].innerText}</li>
     `
+    
 }
 
-// Array.from(editText).forEach(element => {
-//     element.addEventListener("click", editRapper)
-// })
 
 //async function editRapper(){
     // const sName = this.parentNode.childNodes[1].innerText
