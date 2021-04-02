@@ -2,10 +2,11 @@ const express = require ("express")
 const app = express()
 const MongoClient = require("mongodb").MongoClient
 const PORT = 2121
+require("dotenv").config()
 
 // MongoDB Setup
 let db,
-    dbConnectionStr = "mongodb+srv://lng:123456abcd@cluster0.lh9oh.mongodb.net/Rappers?retryWrites=true&w=majority",
+    dbConnectionStr = process.env.DB_STRING,
     dbName = "rap"
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology : true})
