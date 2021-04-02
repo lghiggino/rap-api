@@ -52,6 +52,22 @@ app.delete("/deleteRapper", (request, response) => {
     .catch(error => console.error(error))
 })
 
+app.put("/addOneLike", (request, response) => {
+    db.collection("rappers").updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS, likes: request.body.likesS},{
+        $set: {
+            likes: request.body.likesS + 1
+        }
+    },{
+        sort: {_id: -1},
+        upsert: true,
+    })
+    .then(result =>  {
+        console.log("added one like")
+        response.json("like added")
+        response.redirect("/")
+    })
+})
+
 app.put("/editRapper", (request, response) => {
     db.collection("rappers").updateOne({stageName : request.body.stageNameS})
     .then(result => {
