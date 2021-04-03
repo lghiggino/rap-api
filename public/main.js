@@ -1,12 +1,17 @@
 const deleteText = Array.from(document.querySelectorAll(".delete"))
-const editLikes = Array.from(document.querySelectorAll(".like"))
+const addLikesArray = Array.from(document.querySelectorAll(".like"))
+const removeLikesArray = Array.from(document.querySelectorAll(".dislike"))
 
 deleteText.forEach(element => {
     element.addEventListener("click", deleteRapper)
 })
 
-editLikes.forEach(element => {
-    element.addEventListener("click", updateLikes)
+addLikesArray.forEach(element => {
+    element.addEventListener("click", addLikes)
+})
+
+removeLikesArray.forEach(element => {
+    element.addEventListener("click", removeLikes)
 })
 
 async function deleteRapper(){
@@ -31,10 +36,10 @@ async function deleteRapper(){
     }
 }   
 
-async function updateLikes (){
+async function addLikes(){
     const sName = this.parentNode.childNodes[1].innerText
     const bName = this.parentNode.childNodes[3].innerText
-    const currentLikes = Number(this.parentNode.childNodes[7].innerText)
+    const currentLikes = Number(this.parentNode.childNodes[9].innerText)
     try{
         const response = await fetch("addOneLike", {
             method: "put",
@@ -46,13 +51,35 @@ async function updateLikes (){
             })
         })
         const data = await response.json()
-        console.log(data)
         location.reload()
     }
     catch(err){
         console.log(err)
     }   
 }
+
+async function removeLikes(){
+    const sName = this.parentNode.childNodes[1].innerText
+    const bName = this.parentNode.childNodes[3].innerText
+    const currentLikes = Number(this.parentNode.childNodes[9].innerText)
+    try{
+        const response = await fetch("removeOneLike", {
+            method: "put",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                "stageNameS" : sName,
+                "birthNameS" : bName,
+                "likesS" : currentLikes
+            })
+        })
+        const data = await response.json()
+        location.reload()
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 
 
 // EDIT TEXT

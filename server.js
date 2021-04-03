@@ -23,7 +23,7 @@ app.use(express.json())
 
 // Routing
 app.get("/", (request, response) => {
-    db.collection("rappers").find().toArray()
+    db.collection("rappers").find().sort({likes: -1}).toArray()
     .then(data => {
         response.render("index.ejs", {info:data})
     })
@@ -63,7 +63,23 @@ app.put("/addOneLike", (request, response) => {
     })
     .then(result =>  {
         console.log("added one like")
-        response.json("like added")
+        // response.json("like added")
+        response.redirect("/")
+    })
+})
+
+app.put("/removeOneLike", (request, response) => {
+    db.collection("rappers").updateOne({stageName: request.body.stageNameS, birthName: request.body.birthNameS, likes: request.body.likesS}, {
+        $set: {
+            likes: request.body.likesS - 1
+        }
+    },{
+        sort: {_id: -1},
+        upsert: true,
+    })
+    .then(result => {
+        console.log("removed one like")
+        // response.json("like removed")
         response.redirect("/")
     })
 })

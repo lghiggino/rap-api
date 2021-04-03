@@ -3,7 +3,7 @@ p{
 color: red;
 }
 
-.fa-thumbs-up{
+.fa-thumbs-up, .fa-thumbs-down{
     -webkit-touch-callout: none;
     /* -webkit-user-select: none;
     -moz-user-select: none;
@@ -29,8 +29,9 @@ color: red;
     position: relative;
     vertical-align: top;
     width: 20px;
-    color: #000;
+    color: #333;
     font-size: 16px;
+    line-height: 20px;
 }
 
 
